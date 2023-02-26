@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    android:orientation="vertical"
+    tools:context=".Activity.ActivityCreatorRegistration">
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="#E14646"
+        app:layout_constraintEnd_toEndOf="@+id/text6CreatorEmailAddress"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="@+id/text6CreatorEmailAddress"
+        app:layout_constraintTop_toTopOf="@+id/text6CreatorEmailAddress" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="*required"
+        android:textColor="#E14646"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text1SettingsShare"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:text="Profile Name"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text2CreatorUsername"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text2CreatorUsername"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text2CreatorUsername"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:text="Username"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text3CreatorPassword"
+        app:layout_constraintStart_toStartOf="@+id/text3CreatorPassword"
+        app:layout_constraintTop_toBottomOf="@id/text1SettingsShare" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="#E14646"
+        app:layout_constraintEnd_toEndOf="@+id/text3CreatorPassword"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="@+id/text3CreatorPassword"
+        app:layout_constraintTop_toTopOf="@+id/text3CreatorPassword" />
+
+    <TextView
+        android:id="@+id/text3CreatorPassword"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:text="Password"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text4CreatorConfirmPassword"
+        app:layout_constraintStart_toStartOf="@+id/text4CreatorConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@id/text2CreatorUsername" />
+
+    <TextView
+        android:id="@+id/text4CreatorConfirmPassword"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:text="Confirm Password"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text5CreatorDOB"
+        app:layout_constraintStart_toStartOf="@+id/text5CreatorDOB"
+        app:layout_constraintTop_toBottomOf="@id/text3CreatorPassword" />
+
+    <TextView
+        android:id="@+id/text5CreatorDOB"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:text="DOB(Date of Birth)"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text6CreatorEmailAddress"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text6CreatorEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/text4CreatorConfirmPassword" />
+
+    <TextView
+        android:id="@+id/text6CreatorEmailAddress"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:text="Email"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text7CreatorPhone"
+        app:layout_constraintStart_toStartOf="@+id/text7CreatorPhone"
+        app:layout_constraintTop_toBottomOf="@id/text5CreatorDOB" />
+
+    <TextView
+        android:id="@+id/text7CreatorPhone"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:text="Phone"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text8CreatorCaptchaCode"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text8CreatorCaptchaCode"
+        app:layout_constraintTop_toBottomOf="@+id/text6CreatorEmailAddress" />
+
+    <TextView
+        android:id="@+id/text8CreatorCaptchaCode"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="Captcha Code"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreatorRegister"
+        app:layout_constraintEnd_toStartOf="@+id/editText8CreatorCaptchaCode"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text7CreatorPhone"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editText1CreatorChannelName"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - FoodChain"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editText2CreatorUsername"
+        app:layout_constraintStart_toStartOf="@+id/editText2CreatorUsername"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2CreatorUsername"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - abc@123"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editText3CreatorPassword"
+        app:layout_constraintStart_toStartOf="@+id/editText3CreatorPassword"
+        app:layout_constraintTop_toBottomOf="@id/editText1CreatorChannelName" />
+
+    <EditText
+        android:id="@+id/editText3CreatorPassword"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - abcd@$123"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editText4CreatorConfirmPassword"
+        app:layout_constraintStart_toStartOf="@+id/editText4CreatorConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@id/editText2CreatorUsername" />
+
+    <EditText
+        android:id="@+id/editText4CreatorConfirmPassword"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - abcd@$123"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editText5CreatorDOB"
+        app:layout_constraintStart_toStartOf="@+id/editText5CreatorDOB"
+        app:layout_constraintTop_toBottomOf="@id/editText3CreatorPassword" />
+
+    <EditText
+        android:id="@+id/editText5CreatorDOB"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - 16-12-2002"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/editText6CreatorEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/editText6CreatorEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/editText4CreatorConfirmPassword" />
+
+    <EditText
+        android:id="@+id/editText6CreatorEmailAddress"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - abc@xyz.com"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/editText7CreatorPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/editText7CreatorPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@id/editText5CreatorDOB" />
+
+    <EditText
+        android:id="@+id/editText7CreatorPhoneNumber"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="e.g - 9797979977"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/editText8CreatorCaptchaCode"
+        app:layout_constraintStart_toStartOf="@+id/editText8CreatorCaptchaCode"
+        app:layout_constraintTop_toBottomOf="@id/editText6CreatorEmailAddress" />
+
+    <EditText
+        android:id="@+id/editText8CreatorCaptchaCode"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
+        android:ems="10"
+        android:hint="e.g - 252525"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreatorRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7CreatorPhoneNumber"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnCreatorRegister"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:onClick="btnCreatorRegister"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

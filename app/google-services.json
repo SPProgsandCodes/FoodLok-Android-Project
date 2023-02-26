@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "540410955932",
+    "firebase_url": "https://foodlok-b9457-default-rtdb.firebaseio.com",
+    "project_id": "foodlok-b9457",
+    "storage_bucket": "foodlok-b9457.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540410955932:android:bc6a9737f74a6a2aa64559",
+        "android_client_info": {
+          "package_name": "com.example.foodlok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540410955932-lm9npabjnnm5k42ig8j7k7sjru7buft3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwZJRSG7L0Qa_sZlLFsqJeS_cgSK_zgtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540410955932-lm9npabjnnm5k42ig8j7k7sjru7buft3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

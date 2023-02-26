@@ -1,0 +1,151 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/yellow"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Activity.ActivitySettingsPage">
+
+            <TextView
+                android:id="@+id/text1SettingsShare"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Invite friends"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/text2SettingsNotification"
+                app:layout_constraintStart_toStartOf="@+id/text2SettingsNotification"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text2SettingsNotification"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Notification"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/text3SettingsCreator"
+                app:layout_constraintStart_toStartOf="@+id/text3SettingsCreator"
+                app:layout_constraintTop_toBottomOf="@+id/text1SettingsShare" />
+
+            <TextView
+                android:id="@+id/text3SettingsCreator"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Creator"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text4SettingsPrivacy"
+                app:layout_constraintStart_toStartOf="@+id/text4SettingsPrivacy"
+                app:layout_constraintTop_toBottomOf="@+id/text2SettingsNotification" />
+
+            <TextView
+                android:id="@+id/text4SettingsPrivacy"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Privacy"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text5SettingsSecurity"
+                app:layout_constraintStart_toStartOf="@+id/text5SettingsSecurity"
+                app:layout_constraintTop_toBottomOf="@+id/text3SettingsCreator" />
+
+            <TextView
+                android:id="@+id/text5SettingsSecurity"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Security"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text6SettingsMonetize"
+                app:layout_constraintStart_toStartOf="@+id/text6SettingsMonetize"
+                app:layout_constraintTop_toBottomOf="@+id/text4SettingsPrivacy" />
+
+            <TextView
+                android:id="@+id/text6SettingsMonetize"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Monetize"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text7SettingsAccount"
+                app:layout_constraintStart_toStartOf="@+id/text7SettingsAccount"
+                app:layout_constraintTop_toBottomOf="@+id/text5SettingsSecurity" />
+
+            <TextView
+                android:id="@+id/text7SettingsAccount"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Account"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text8SettingsHelp"
+                app:layout_constraintStart_toStartOf="@+id/text8SettingsHelp"
+                app:layout_constraintTop_toBottomOf="@+id/text6SettingsMonetize" />
+
+            <TextView
+                android:id="@+id/text8SettingsHelp"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Help"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text9SettingsAbout"
+                app:layout_constraintStart_toStartOf="@+id/text9SettingsAbout"
+                app:layout_constraintTop_toBottomOf="@+id/text7SettingsAccount" />
+
+            <TextView
+                android:id="@+id/text9SettingsAbout"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="About"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/text10SettingsTheme"
+                app:layout_constraintStart_toStartOf="@+id/text10SettingsTheme"
+                app:layout_constraintTop_toBottomOf="@+id/text8SettingsHelp" />
+
+            <TextView
+                android:id="@+id/text10SettingsTheme"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="Theme"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.066"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text9SettingsAbout" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+

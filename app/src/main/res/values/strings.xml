@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">FoodLok</string>
+    <string name="OwnerName">Owner Name</string>
+
+    <!--    Sizes-->
+    <string name="width150">150dp</string>
+
+    <!--    Bottom Navigation items of HomeScreen-->
+    <string name="home">Home</string>
+    <string name="notification">Notification</string>
+    <string name="add">Add Post</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    //Bio
+    <string name="bio">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying ...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

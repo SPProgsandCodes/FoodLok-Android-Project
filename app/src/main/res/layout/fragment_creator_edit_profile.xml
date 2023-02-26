@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editProfileContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E9EBEE"
+    android:orientation="vertical"
+    tools:context=".Fragments.CreatorEditProfileFragment">
+
+    <!-- Profile Picture -->
+    <ImageView
+        android:id="@+id/imgCreatorProfilePhoto"
+        android:layout_width="@dimen/_90mdp"
+        android:layout_height="@dimen/_90mdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/profile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtUploadPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload new photo"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/imgCreatorProfilePhoto"
+        app:layout_constraintStart_toStartOf="@+id/imgCreatorProfilePhoto"
+        app:layout_constraintEnd_toEndOf="@+id/imgCreatorProfilePhoto"/>
+
+    <ImageView
+        android:id="@+id/imgUploadProfilePhoto"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/upload_image"
+        app:layout_constraintEnd_toEndOf="@+id/txtUploadPhoto"
+        app:layout_constraintStart_toStartOf="@+id/txtUploadPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/txtUploadPhoto" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="@+id/imgUploadProfilePhoto"
+        app:layout_constraintStart_toStartOf="@+id/imgUploadProfilePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/imgUploadProfilePhoto" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
