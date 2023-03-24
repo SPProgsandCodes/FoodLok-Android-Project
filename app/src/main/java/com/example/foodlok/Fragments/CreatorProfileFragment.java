@@ -2,10 +2,13 @@
 package com.example.foodlok.Fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -13,9 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.foodlok.Activity.ActivityEditProfile;
 import com.example.foodlok.Activity.ActivitySettingsPage;
 import com.example.foodlok.R;
+import com.example.foodlok.model.ModelUsers;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 
 public class CreatorProfileFragment extends Fragment {
@@ -23,10 +35,15 @@ public class CreatorProfileFragment extends Fragment {
     Button btnEditProfile;
     Button btnSettings;
     FragmentTransaction transaction;
+    FirebaseDatabase database;
+    FirebaseAuth auth;
+    public static boolean flag = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database = FirebaseDatabase.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -39,22 +56,28 @@ public class CreatorProfileFragment extends Fragment {
         btnEditProfile = view.findViewById(R.id.btnCreatorEditProfile);
         btnSettings = view.findViewById(R.id.btnCreatorSettings);
 
+        setProfilePhoto();
+
         // For edit profile button testing
-        /*
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CreatorEditProfileFragment fragment = new CreatorEditProfileFragment();
-                FragmentTransaction transaction = requireFragmentManager().beginTransaction();
-                transaction.add(R.id.layoutCreatorProfile, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+//                Intent intent = new Intent(getActivity(), ActivityEditProfile.class);
+//                startActivity(intent);
+                CreatorEditProfileFragment editProfileFragment = new CreatorEditProfileFragment();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.layoutCreatorProfile, editProfileFragment);
+//                fragmentTransaction.addToBackStack(null);
+                btnEditProfile.setVisibility(View.GONE);
+                btnSettings.setVisibility(View.GONE);
+                fragmentTransaction.commit();
             }
         });
 
-         */
 
-        // When user clicks settings button on user's profile i will redirect to settings page
+
+        // When user clicks settings button on user's profile it will redirect to settings page
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,5 +87,27 @@ public class CreatorProfileFragment extends Fragment {
         });
         return view;
     }
+
+    public void setProfilePhoto(){
+        database.getReference().child("Users").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    ModelUsers users = snapshot.getValue(ModelUsers.class);
+                        Picasso.get()
+                                .load(users.getProfilePhoto())
+                                .placeholder(R.drawable.placeholder)
+                                .into(profilePhoto);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 
 }

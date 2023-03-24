@@ -59,6 +59,73 @@ public class ActivityLoginScreen extends AppCompatActivity {
         String email = Email.getText().toString();
         String passwd = Password.getText().toString();
 
+        // Method calling to begin the process of authenticating and login the current user
+        userLogin(email, passwd);
+    }
+
+    public void btnDevelopers(View view){
+        String email = "snehp226@gmail.com";
+        String passwd = "123456";
+
+        userLogin(email, passwd);
+    }
+
+    public void userAuth(){
+        // Checks if data is fetched successfully or not from Firebase
+        if (flag) {
+            String toast = "Logged in Successfully";
+            ModelToastDisplay.displayToast200ms(toast, context);
+            Intent intent = new Intent(ActivityLoginScreen.this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            String toast = "Login Failed!! Try again";
+            ModelToastDisplay.displayToast200ms(toast, context);
+        }
+
+    }
+    public void hyp_link(View view) {// Drives to signup
+        Intent intent = new Intent(this, ActivitySignupScreen.class);
+        startActivity(intent);
+    }
+
+    // For Testing Purposes
+    public void btnLoginTest(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    // Method that fetches user's data from database and stores it into model named "ModelUsers"
+    public void fetchUserData() {
+
+        // Defining path where the user's data is stored using user's unique id
+        database.getReference().child("Users").child(auth.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // Data is fetched from Firebase in the form of snapshot
+                        if (snapshot.exists()) {
+                            Toast.makeText(context, "Data fetched Successfully", Toast.LENGTH_SHORT).show();
+                            users = snapshot.getValue(ModelUsers.class);
+                            //If data is fetched successfully from the firebase then flag becomes true
+                            flag = true;
+                            userAuth();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context, "database error", Toast.LENGTH_SHORT).show();
+                        //If data is not fetched successfully from the firebase then flag becomes false
+                        flag = false;
+                    }
+
+                });
+//        Returning the flag
+    }
+
+    // Method that login the user after clicking login button and checking user's credentials
+    private void userLogin(String email, String passwd){
         // Checks whether email and password fields is empty or not
         if (email.isEmpty() || passwd.isEmpty()) {
             String dispToast = "Enter valid email and password";
@@ -73,20 +140,9 @@ public class ActivityLoginScreen extends AppCompatActivity {
 
                             // Checks whether the authentication is successfull or not
                             if (task.isSuccessful()) {
-
                                 // Method for fetching user's data from Firebase
-                                boolean flag = fetchUserData();
+                                fetchUserData();
 
-                                // Checks if data is fetched successfully or not from Firebase
-                                if (flag) {
-                                    String toast = "Logged in Successfully";
-                                    ModelToastDisplay.displayToast200ms(toast, context);
-                                    Intent intent = new Intent(ActivityLoginScreen.this, MainActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    String toast = "Login Failed!! Try again";
-                                    ModelToastDisplay.displayToast200ms(toast, context);
-                                }
 
                             } else {
                                 String toast = "Invalid Login Details";
@@ -97,47 +153,6 @@ public class ActivityLoginScreen extends AppCompatActivity {
             currentUser = auth.getCurrentUser();
         }
 
-    }
-
-    public void hyp_link(View view) {// Drives to signup
-        Intent intent = new Intent(this, ActivitySignupScreen.class);
-        startActivity(intent);
-    }
-
-    // For Testing Purposes
-    public void btnLoginTest(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    // Method that fetches user's data from database and stores it into model named "ModelUsers"
-    public boolean fetchUserData() {
-
-        // Defining path where the user's data is stored using user's unique id
-        database.getReference().child("Users").child(auth.getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // Data is fetched from Firebase in the form of snapshot
-                        if (snapshot.exists()) {
-                            Toast.makeText(context, "Data fetched Successfully", Toast.LENGTH_SHORT).show();
-                            users = snapshot.getValue(ModelUsers.class);
-                            //If data is fetched successfully from the firebase then flag becomes true
-                            flag = true;
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(context, "database error", Toast.LENGTH_SHORT).show();
-                        //If data is not fetched successfully from the firebase then flag becomes false
-                        flag = false;
-                    }
-
-                });
-//        Returning the flag
-        return flag;
     }
 
     // When user log in their account they remain login.

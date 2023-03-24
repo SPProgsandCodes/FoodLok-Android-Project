@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodlok.R;
 import com.example.foodlok.databinding.UserSampleBinding;
 import com.example.foodlok.model.ModelUsers;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         ModelUsers users = list.get(position);
+        Picasso.get()
+                .load(users.getProfilePhoto())
+                .placeholder(R.drawable.placeholder)
+                .into(holder.binding.imgUserProfilePic);
 
+        holder.binding.textUserName.setText(users.getProfileName());
+        holder.binding.textUserProfession.setText(users.getProfession());
     }
 
     @Override

@@ -90,7 +90,7 @@ public class ActivityFoodSellerRegistration extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         // Creating instance of Model and calling parameterized constructor
-                        ModelFoodSellerRegisterData data = new ModelFoodSellerRegisterData(OwnerName, Address, email, City, State, PostalCode, Phone, TelePhone, LicenceNo, Username, passwd, ACC_CATEGORY);
+                        ModelUsers data = new ModelUsers(email,Phone, OwnerName, Address, City, State, LicenceNo, PostalCode,  TelePhone,  Username, ACC_CATEGORY);
                         String id = task.getResult().getUser().getUid();
 
                         //database object calls getReference() method to get reference from database.

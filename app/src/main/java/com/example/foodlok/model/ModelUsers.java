@@ -3,18 +3,35 @@ package com.example.foodlok.model;
 public class ModelUsers {
     public static String category;
     String profileName, profession, password, email, dob, phone, ownerName, address, city, state, licenceNo, postalCode, telephoneNo, username;
+    private String coverPhoto;
+    private String profilePhoto;
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
 
     // Default Constructor
     public ModelUsers() {
     }
 
-    public ModelUsers(String category, String profileName, String profession, String password, String email, String dob, String phone, String ownerName, String address, String city, String state, String licenceNo, String postalCode, String telephoneNo, String username) {
-        this.category = category;
+    // For Creator user
+    public ModelUsers(String profileName, String password, String email, String dob, String phone, String username, String category) {
         this.profileName = profileName;
-        this.profession = profession;
         this.password = password;
         this.email = email;
         this.dob = dob;
+        this.phone = phone;
+        this.username = username;
+        this.category = category;
+    }
+
+    // For FoodSeller User
+    public ModelUsers(String email, String phone, String ownerName, String address, String city, String state, String licenceNo, String postalCode, String telephoneNo, String username, String category) {
+        this.email = email;
         this.phone = phone;
         this.ownerName = ownerName;
         this.address = address;
@@ -24,8 +41,8 @@ public class ModelUsers {
         this.postalCode = postalCode;
         this.telephoneNo = telephoneNo;
         this.username = username;
+        this.category = category;
     }
-
 
 
     public String getCategory() {
@@ -149,4 +166,11 @@ public class ModelUsers {
     }
 
 
+    public String getCoverPhoto() {
+        return coverPhoto;
+    }
+
+    public void setCoverPhoto(String coverPhoto) {
+        this.coverPhoto = coverPhoto;
+    }
 }

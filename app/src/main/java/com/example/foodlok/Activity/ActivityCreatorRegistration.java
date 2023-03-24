@@ -32,7 +32,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
 
     FirebaseDatabase database;
     EditText creatorProfileName;
-    EditText creatorProfession;
+    EditText creatorUsername;
     EditText creatorEmail;
     EditText creatorPhone;
     EditText creatorDOB;
@@ -56,7 +56,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
 
         // Fetching id's of components
         creatorProfileName = findViewById(R.id.editText1CreatorChannelName);
-        creatorProfession = findViewById(R.id.editText2CreatorUsername);
+        creatorUsername = findViewById(R.id.editText2CreatorUsername);
         creatorEmail = findViewById(R.id.editText6CreatorEmailAddress);
         creatorDOB = findViewById(R.id.editText5CreatorDOB);
         creatorPhone = findViewById(R.id.editText7CreatorPhoneNumber);
@@ -79,7 +79,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
 
                     // Fetching values as string from components and storing in String variable
                     String profileName = creatorProfileName.getText().toString();
-                    String profession = creatorProfession.getText().toString();
+                    String username = creatorUsername.getText().toString();
                     String dob = creatorDOB.getText().toString();
                     String phone = creatorPhone.getText().toString();
 
@@ -87,7 +87,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         // Creating instance of Model and calling parameterized constructor
-                        ModelCreatorRegisterData data = new ModelCreatorRegisterData(profileName, profession, passwd, email, dob, phone, ACC_CATEGORY);
+                        ModelUsers data = new ModelUsers(profileName, passwd, email, dob, phone, username, ACC_CATEGORY);
                         String id = task.getResult().getUser().getUid();
 
                         //database object calls getReference() method to get reference from database.

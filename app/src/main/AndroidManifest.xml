@@ -4,6 +4,7 @@
     package="com.example.foodlok">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,10 @@
         android:theme="@style/Theme.FoodLok"
         tools:targetApi="32">
         <activity
-            android:name=".Activity.ActivityCreatorEditProfile"
+            android:name=".Activity.ActivityCreatorProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityEditProfile"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

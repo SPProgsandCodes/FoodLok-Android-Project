@@ -30,15 +30,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text1SettingsShare"
+        android:id="@+id/text1CreatorProfileName"
         android:layout_width="170dp"
         android:layout_height="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:text="Profile Name"
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/text2CreatorUsername"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/text2CreatorUsername"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,8 +50,9 @@
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/text3CreatorPassword"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/text3CreatorPassword"
-        app:layout_constraintTop_toBottomOf="@id/text1SettingsShare" />
+        app:layout_constraintTop_toBottomOf="@id/text1CreatorProfileName" />
 
     <TextView
         android:id="@+id/textView15"
