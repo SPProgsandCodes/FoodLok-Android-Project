@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,17 +19,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.foodlok.R;
+import com.example.foodlok.model.ModelEditProfileData;
 import com.example.foodlok.model.ModelToastDisplay;
+import com.example.foodlok.model.ModelUsers;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -36,6 +44,9 @@ public class CreatorEditProfileFragment extends Fragment {
 
     public ImageView profilePhoto;
     ImageView uploadProfilePhoto;
+    EditText editProfileName;
+    EditText editProfessionName;
+    EditText editProfileBio;
     Button btnSaveProfilePhoto;
     CreatorProfileFragment fragment;
     FirebaseAuth auth;
@@ -63,9 +74,13 @@ public class CreatorEditProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creator_edit_profile, container, false);
         profilePhoto = view.findViewById(R.id.imgCreatorProfilePhoto);
+        editProfileName = view.findViewById(R.id.creatorEditProfileProfileName);
+        editProfessionName = view.findViewById(R.id.creatorEditProfileProfessionName);
+        editProfileBio = view.findViewById(R.id.creatorEditProfileBio);
         uploadProfilePhoto = view.findViewById(R.id.imgUploadProfilePhoto);
         btnSaveProfilePhoto = view.findViewById(R.id.btnSave);
 
+        fetchUserData();
         /*
         // Setting Profile image from database reference
         database.getReference().child("Users").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -130,43 +145,87 @@ public class CreatorEditProfileFragment extends Fragment {
         }
     }
 
+    public void fetchUserData() {
+
+        database.getReference().child("Users").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    ModelUsers user = snapshot.getValue(ModelUsers.class);
+                    Picasso.get()
+                            .load(user.getProfilePhoto())
+                            .placeholder(R.drawable.placeholder)
+                            .into(profilePhoto);
+                    editProfileName.setText(user.getProfileName());
+                    editProfessionName.setText(user.getProfession());
+                    editProfileBio.setText(user.getBio());
+                    flag = 1;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     public void storeImageInDatabaseStorage() {
 
         if (flag == 1) {
-            // Creates child for storing profile image in database storage
-            final StorageReference reference = storage.getReference().child("profile_photo").child(FirebaseAuth.getInstance().getUid());
-            reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            if (uri!=null){
+                // Creates child for storing profile image in database storage
+                final StorageReference reference = storage.getReference().child("profile_photo").child(FirebaseAuth.getInstance().getUid());
+                reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    //Fetching download URL and storing in database
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            // Storing profile image download url at this path
-                            database.getReference().child("Users").child(auth.getUid()).child("profilePhoto").setValue(uri.toString());
-                            flag = 1;
-                            String toast = "Profile Photo Uploaded";
-                            ModelToastDisplay.displayToast200ms(toast, context);
+                        //Fetching download URL and storing in database
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            final String profileName = editProfileName.getText().toString();
+                            final String profession = editProfessionName.getText().toString();
+                            final String bio = editProfileBio.getText().toString();
 
-                            profilePhoto.setImageURI(uri);
-                            Toast.makeText(getActivity(), "Profile Photo Updated", Toast.LENGTH_SHORT).show();
-                            ProfileFragment fragment = new ProfileFragment();
-                            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                            FragmentTransaction transaction = fragmentManager.beginTransaction();
-                            transaction.replace(R.id.editProfileContainer, fragment);
+                            @Override
+                            public void onSuccess(Uri uri) {
 
-                            CreatorProfileFragment.flag = true;
-                            Bundle bundle = new Bundle();
-                            bundle.putParcelable("profile_photo", uri);
-                            fragment.setArguments(bundle);
+                                // Storing profile image download url at this path
+                                database.getReference().child("Users").child(auth.getUid()).child("profilePhoto").setValue(uri.toString());
+                                database.getReference().child("Users").child(auth.getUid()).child("profileName").setValue(profileName);
+                                database.getReference().child("Users").child(auth.getUid()).child("profession").setValue(profession);
+                                database.getReference().child("Users").child(auth.getUid()).child("bio").setValue(bio);
+                                flag = 1;
 
-                            transaction.commit();
-                        }
-                    });
-                }
-            });
+                                profilePhoto.setImageURI(uri);
+                                String toast = "Profile Photo Updated";
+                                ModelToastDisplay.displayToast200ms(toast, context);
+                                ProfileFragment fragment = new ProfileFragment();
+                                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                transaction.replace(R.id.editProfileContainer, fragment);
+                                transaction.commit();
+                                String toast1 = "Saved Successfully";
+                                ModelToastDisplay.displayToast200ms(toast1, context);
+                            }
+                        });
+                    }
+                });
+
+            } else {
+                final String profileName = editProfileName.getText().toString();
+                final String profession = editProfessionName.getText().toString();
+                final String bio = editProfileBio.getText().toString();
+                database.getReference().child("Users").child(auth.getUid()).child("profileName").setValue(profileName);
+                database.getReference().child("Users").child(auth.getUid()).child("profession").setValue(profession);
+                database.getReference().child("Users").child(auth.getUid()).child("bio").setValue(bio);
+                ProfileFragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.editProfileContainer, fragment);
+                transaction.commit();
+                String toast = "Saved Successfully";
+                ModelToastDisplay.displayToast200ms(toast, context);
+            }
 
 
         } else {

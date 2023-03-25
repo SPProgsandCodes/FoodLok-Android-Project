@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.126" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/creatorProfileProfessionName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -85,8 +85,8 @@
         android:layout_marginTop="16dp"
         android:text="For Developers"
         android:onClick="btnDevelopers"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="@+id/creatorProfileProfessionName"
+        app:layout_constraintStart_toStartOf="@+id/creatorProfileProfessionName"
+        app:layout_constraintTop_toBottomOf="@+id/creatorProfileProfessionName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

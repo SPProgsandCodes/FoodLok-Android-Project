@@ -2,7 +2,21 @@ package com.example.foodlok.model;
 
 public class ModelUsers {
     public static String category;
-    String profileName, profession, password, email, dob, phone, ownerName, address, city, state, licenceNo, postalCode, telephoneNo, username;
+    String profileName;
+    String profession;
+    String password;
+    String email;
+    String dob;
+    String phone;
+    String ownerName;
+    String address;
+    String city;
+    String state;
+    String licenceNo;
+    String postalCode;
+    String telephoneNo;
+    String username;
+    String bio;
     private String coverPhoto;
     private String profilePhoto;
 
@@ -19,13 +33,14 @@ public class ModelUsers {
     }
 
     // For Creator user
-    public ModelUsers(String profileName, String password, String email, String dob, String phone, String username, String category) {
+    public ModelUsers(String profileName, String password, String email, String dob, String phone, String profession, String category, String bio) {
         this.profileName = profileName;
         this.password = password;
         this.email = email;
         this.dob = dob;
         this.phone = phone;
-        this.username = username;
+        this.profession = profession;
+        this.bio = bio;
         this.category = category;
     }
 
@@ -172,5 +187,13 @@ public class ModelUsers {
 
     public void setCoverPhoto(String coverPhoto) {
         this.coverPhoto = coverPhoto;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

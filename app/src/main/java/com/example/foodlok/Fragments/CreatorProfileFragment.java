@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodlok.Activity.ActivityEditProfile;
@@ -34,7 +36,9 @@ public class CreatorProfileFragment extends Fragment {
     ImageView profilePhoto;
     Button btnEditProfile;
     Button btnSettings;
-    FragmentTransaction transaction;
+    TextView profileName;
+    TextView profileProfession;
+    TextView profileBio;
     FirebaseDatabase database;
     FirebaseAuth auth;
     public static boolean flag = false;
@@ -44,6 +48,7 @@ public class CreatorProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
+
     }
 
     @Override
@@ -53,8 +58,12 @@ public class CreatorProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_creator_profile, container, false);
 
         profilePhoto = view.findViewById(R.id.profile_picture);
+        profileName = view.findViewById(R.id.creatorProfileProfileName);
+        profileProfession = view.findViewById(R.id.creatorProfileProfessionName);
+        profileBio = view.findViewById(R.id.creatorProfileBio);
         btnEditProfile = view.findViewById(R.id.btnCreatorEditProfile);
         btnSettings = view.findViewById(R.id.btnCreatorSettings);
+
 
         setProfilePhoto();
 
@@ -76,7 +85,6 @@ public class CreatorProfileFragment extends Fragment {
         });
 
 
-
         // When user clicks settings button on user's profile it will redirect to settings page
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,16 +96,23 @@ public class CreatorProfileFragment extends Fragment {
         return view;
     }
 
-    public void setProfilePhoto(){
+    public void setProfilePhoto() {
         database.getReference().child("Users").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     ModelUsers users = snapshot.getValue(ModelUsers.class);
-                        Picasso.get()
-                                .load(users.getProfilePhoto())
-                                .placeholder(R.drawable.placeholder)
-                                .into(profilePhoto);
+                    //For Fetching Profile Image From Database
+                    Picasso.get()
+                            .load(users.getProfilePhoto())
+                            .placeholder(R.drawable.placeholder)
+                            .into(profilePhoto);
+                    // Fetching Profile Name From ModelUsers class
+                    profileName.setText(users.getProfileName());
+                    // Fetching Profession Name From ModelUsers class
+                    profileProfession.setText(users.getProfession());
+                    // Fetching Bio From ModelUsers class
+                    profileBio.setText(users.getBio());
                 }
             }
 

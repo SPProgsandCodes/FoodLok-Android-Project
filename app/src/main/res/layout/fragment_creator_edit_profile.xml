@@ -47,11 +47,81 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Save"
+        app:layout_constraintEnd_toEndOf="@+id/creatorEditProfileBio"
+        app:layout_constraintStart_toStartOf="@+id/creatorEditProfileBio"
+        app:layout_constraintTop_toBottomOf="@+id/creatorEditProfileBio" />
+
+    <EditText
+        android:id="@+id/creatorEditProfileProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/imgUploadProfilePhoto"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/imgUploadProfilePhoto"
         app:layout_constraintTop_toBottomOf="@+id/imgUploadProfilePhoto" />
+
+    <EditText
+        android:id="@+id/creatorEditProfileProfessionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/creatorEditProfileProfileName"
+        app:layout_constraintStart_toStartOf="@+id/creatorEditProfileProfileName"
+        app:layout_constraintTop_toBottomOf="@+id/creatorEditProfileProfileName" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintBottom_toTopOf="@+id/creatorEditProfileProfileName"
+        app:layout_constraintStart_toStartOf="@+id/creatorEditProfileProfileName"
+        app:layout_constraintTop_toBottomOf="@+id/imgUploadProfilePhoto"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Profession"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintBottom_toTopOf="@+id/creatorEditProfileProfessionName"
+        app:layout_constraintStart_toStartOf="@+id/creatorEditProfileProfessionName" />
+
+    <EditText
+        android:id="@+id/creatorEditProfileBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/creatorEditProfileProfessionName"
+        app:layout_constraintStart_toStartOf="@+id/creatorEditProfileProfessionName"
+        app:layout_constraintTop_toBottomOf="@+id/creatorEditProfileProfessionName" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Bio"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintBottom_toTopOf="@+id/creatorEditProfileBio"
+        app:layout_constraintStart_toStartOf="@+id/creatorEditProfileBio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

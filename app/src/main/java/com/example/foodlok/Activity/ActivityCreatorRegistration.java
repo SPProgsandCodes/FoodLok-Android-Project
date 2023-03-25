@@ -10,12 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodlok.MainActivity;
 import com.example.foodlok.R;
-import com.example.foodlok.model.ModelCreatorRegisterData;
 import com.example.foodlok.model.ModelToastDisplay;
 import com.example.foodlok.model.ModelUsers;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,12 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ActivityCreatorRegistration extends AppCompatActivity {
     int incr = 100;
     public String ACC_CATEGORY;
+    public String ACC_BIO = "";
     Context context;
     FirebaseAuth auth;
 
     FirebaseDatabase database;
     EditText creatorProfileName;
-    EditText creatorUsername;
+    EditText creatorProfession;
     EditText creatorEmail;
     EditText creatorPhone;
     EditText creatorDOB;
@@ -56,7 +55,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
 
         // Fetching id's of components
         creatorProfileName = findViewById(R.id.editText1CreatorChannelName);
-        creatorUsername = findViewById(R.id.editText2CreatorUsername);
+        creatorProfession = findViewById(R.id.editText2CreatorProfession);
         creatorEmail = findViewById(R.id.editText6CreatorEmailAddress);
         creatorDOB = findViewById(R.id.editText5CreatorDOB);
         creatorPhone = findViewById(R.id.editText7CreatorPhoneNumber);
@@ -79,7 +78,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
 
                     // Fetching values as string from components and storing in String variable
                     String profileName = creatorProfileName.getText().toString();
-                    String username = creatorUsername.getText().toString();
+                    String profession = creatorProfession.getText().toString();
                     String dob = creatorDOB.getText().toString();
                     String phone = creatorPhone.getText().toString();
 
@@ -87,7 +86,7 @@ public class ActivityCreatorRegistration extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         // Creating instance of Model and calling parameterized constructor
-                        ModelUsers data = new ModelUsers(profileName, passwd, email, dob, phone, username, ACC_CATEGORY);
+                        ModelUsers data = new ModelUsers(profileName, passwd, email, dob, phone, profession, ACC_CATEGORY, ACC_BIO);
                         String id = task.getResult().getUser().getUid();
 
                         //database object calls getReference() method to get reference from database.
