@@ -136,7 +136,7 @@ public class CreatorEditProfileFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//
+
             profilePhoto.setImageBitmap(bitmap);
             Toast.makeText(context, "Profile photo updated", Toast.LENGTH_SHORT).show();
             CreatorEditProfileFragment.flag = 1;

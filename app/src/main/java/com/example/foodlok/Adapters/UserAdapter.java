@@ -10,10 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodlok.R;
 import com.example.foodlok.databinding.UserSampleBinding;
+import com.example.foodlok.model.ModelFollow;
 import com.example.foodlok.model.ModelUsers;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
     Context context;
@@ -41,6 +46,39 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
 
         holder.binding.textUserName.setText(users.getProfileName());
         holder.binding.textUserProfession.setText(users.getProfession());
+
+        holder.binding.btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ModelFollow follow = new ModelFollow();
+                follow.setFollowedBy(FirebaseAuth.getInstance().getUid());
+                follow.setFollowedAt(new Date().getTime());
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child("Users")
+                        .child(users.getUserId())
+                        .child("Followers")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .setValue(follow).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                FirebaseDatabase.getInstance().getReference()
+                                        .child("Users")
+                                        .child(users.getUserId())
+                                        .child("followerCount")
+                                        .setValue(users.getFollowerCount() + 1);
+                                        /*.addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(view.getContext(), "You Followed "+users.getProfileName(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                         */
+                            }
+                        });
+            }
+        });
     }
 
     @Override

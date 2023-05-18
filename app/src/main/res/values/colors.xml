@@ -10,7 +10,7 @@
     <color name="light_white">#E9EBEE</color>
     <color name="yellow">#D8FFEB3B</color>
     <color name="orange">#FF9900</color>
-
+    <color name="gray">#858585</color>
     <color name="red_circle">#E40000</color>
     <color name="darker_grey">#444040</color>
 </resources>

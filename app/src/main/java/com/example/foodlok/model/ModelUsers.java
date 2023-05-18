@@ -19,14 +19,8 @@ public class ModelUsers {
     String bio;
     private String coverPhoto;
     private String profilePhoto;
-
-    public String getProfilePhoto() {
-        return profilePhoto;
-    }
-
-    public void setProfilePhoto(String profilePhoto) {
-        this.profilePhoto = profilePhoto;
-    }
+    private String userId;
+    private int followerCount;
 
     // Default Constructor
     public ModelUsers() {
@@ -195,5 +189,29 @@ public class ModelUsers {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public int getFollowerCount() {
+        return followerCount;
+    }
+
+    public void setFollowerCount(int followerCount) {
+        this.followerCount = followerCount;
     }
 }

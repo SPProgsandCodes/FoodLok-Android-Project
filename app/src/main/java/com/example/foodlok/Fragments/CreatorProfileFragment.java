@@ -39,6 +39,7 @@ public class CreatorProfileFragment extends Fragment {
     TextView profileName;
     TextView profileProfession;
     TextView profileBio;
+    TextView profileFollowers;
     FirebaseDatabase database;
     FirebaseAuth auth;
     public static boolean flag = false;
@@ -63,6 +64,8 @@ public class CreatorProfileFragment extends Fragment {
         profileBio = view.findViewById(R.id.creatorProfileBio);
         btnEditProfile = view.findViewById(R.id.btnCreatorEditProfile);
         btnSettings = view.findViewById(R.id.btnCreatorSettings);
+        profileFollowers = view.findViewById(R.id.textFollowerCount);
+
 
 
         setProfilePhoto();
@@ -113,6 +116,8 @@ public class CreatorProfileFragment extends Fragment {
                     profileProfession.setText(users.getProfession());
                     // Fetching Bio From ModelUsers class
                     profileBio.setText(users.getBio());
+                    // Fetching Followers From ModelUsers count
+                    profileFollowers.setText(users.getFollowerCount()+"");
                 }
             }
 
