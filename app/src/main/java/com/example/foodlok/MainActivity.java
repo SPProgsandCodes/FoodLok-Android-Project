@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.foodlok.Activity.ActivityCreatorRegistration;
@@ -37,41 +38,49 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // We use "FragmentTransaction" class to navigate between Fragments
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, new HomeFragment());
-        transaction.commit();
         rb = findViewById(R.id.readableBottomBar);
-        rb.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
+        if (ModelUsers.category.equals("Guest")){
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container, new HomeFragment());
+            rb.setVisibility(View.GONE);
+            transaction.commit();
+        }else {
+            // We use "FragmentTransaction" class to navigate between Fragments
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container, new HomeFragment());
+            transaction.commit();
 
-            @Override
-            public void onItemSelected(int i) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            rb.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
+
+                @Override
+                public void onItemSelected(int i) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //                Intent intent = getIntent();
 //                getAccCategory = ModelUsers.category;
 
 
-                switch (i) {
-                    case 0:
-                        transaction.replace(R.id.container, new HomeFragment());
-                        break;
-                    case 1:
-                        transaction.replace(R.id.container, new NotificationFragment());
-                        break;
-                    case 2:
-                        transaction.replace(R.id.container, new AddPostFragment());
-                        break;
-                    case 3:
-                        transaction.replace(R.id.container, new SearchFragment());
-                        break;
-                    case 4:
-                        transaction.replace(R.id.container, new ProfileFragment());
-                        break;
+                    switch (i) {
+                        case 0:
+                            transaction.replace(R.id.container, new HomeFragment());
+                            break;
+                        case 1:
+                            transaction.replace(R.id.container, new NotificationFragment());
+                            break;
+                        case 2:
+                            transaction.replace(R.id.container, new AddPostFragment());
+                            break;
+                        case 3:
+                            transaction.replace(R.id.container, new SearchFragment());
+                            break;
+                        case 4:
+                            transaction.replace(R.id.container, new ProfileFragment());
+                            break;
+                    }
+                    transaction.commit();
                 }
-                transaction.commit();
-            }
-        });
+            });
+        }
+
     }
 
 

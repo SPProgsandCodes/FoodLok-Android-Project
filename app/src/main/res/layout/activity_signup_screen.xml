@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
     tools:context=".Activity.ActivitySignupScreen">
 
     <TextView
@@ -29,6 +28,7 @@
         android:layout_marginTop="76dp"
         android:text="Food Seller"
         android:onClick="btn_FoodSeller"
+        android:enabled="true"
         app:layout_constraintEnd_toEndOf="@+id/button6"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,7 @@
         android:layout_height="48dp"
         android:text="Guest"
         android:onClick="btn_Guest"
+        android:enabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

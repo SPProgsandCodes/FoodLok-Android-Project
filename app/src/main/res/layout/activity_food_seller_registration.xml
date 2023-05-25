@@ -12,7 +12,6 @@
 
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/yellow"
         android:orientation="vertical">
 
         <TextView

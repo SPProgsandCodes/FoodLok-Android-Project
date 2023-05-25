@@ -1,6 +1,8 @@
 // Fragment that sets posts on HomeScreen
 package com.example.foodlok.Fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +43,7 @@ public class HomeFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        Toast.makeText(getContext(), "Home Fragment Invoked", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "Home Fragment Invoked", Toast.LENGTH_SHORT).show();
         
         // For Manual entry(Only For Testing Purposes)
 //        dashboardList.add(new ModelDashboard(R.drawable.profile, R.drawable.post1, R.drawable.ic_saved,
@@ -56,6 +59,7 @@ public class HomeFragment extends Fragment {
 
         PostAdapter postAdapter = new PostAdapter(postList, getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setReverseLayout(true);
         dashboardRV.setLayoutManager(layoutManager);
         dashboardRV.setNestedScrollingEnabled(false);
         dashboardRV.setAdapter(postAdapter);
@@ -63,15 +67,11 @@ public class HomeFragment extends Fragment {
         database.getReference().child("posts").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println("Setting Posts...");
-                int i;
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    i = 1;
-                    System.out.println(i);
+                    Log.d(TAG, "Your KEY: "+dataSnapshot.getKey()+"");
                     ModelPost post = dataSnapshot.getValue(ModelPost.class);
                     post.setPostID(dataSnapshot.getKey());
                     postList.add(post);
-                    i++;
                 }
                 postAdapter.notifyDataSetChanged();
             }

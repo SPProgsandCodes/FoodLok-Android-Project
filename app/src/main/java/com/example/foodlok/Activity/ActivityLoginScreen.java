@@ -4,9 +4,11 @@ package com.example.foodlok.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.ReturnThis;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -31,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ActivityLoginScreen extends AppCompatActivity {
     EditText Email;
+    Button btnForDevelopers;
     boolean flag = false;
     ModelUsers users;
     EditText Password;
@@ -47,7 +50,11 @@ public class ActivityLoginScreen extends AppCompatActivity {
         // Fetching instances of Firebase classes
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        btnForDevelopers = findViewById(R.id.btnForDevelopers);
         context = ActivityLoginScreen.this;
+
+        btnForDevelopers.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.btn_for_dev));
+        btnForDevelopers.setTextColor(Color.WHITE);
     }
 
     public void btn_login(View view) { //Drives to HomeScreen

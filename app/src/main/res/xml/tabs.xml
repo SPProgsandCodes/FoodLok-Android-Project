@@ -2,18 +2,18 @@
 <Tabs xmlns:android="http://schemas.android.com/apk/res/android">
 
     <tab
-        drawable="@drawable/icon_settings_notification_bell"
+        drawable="@drawable/home"
         text="@string/home" />
     <tab
-        drawable="@drawable/icon_settings_notification_bell"
+        drawable="@drawable/bell"
         text="@string/notification" />
     <tab
-        drawable="@drawable/icon_settings_notification_bell"
+        drawable="@drawable/add"
         text="@string/add" />
     <tab
-        drawable="@drawable/icon_settings_notification_bell"
+        drawable="@drawable/search"
         text="@string/search" />
     <tab
-        drawable="@drawable/icon_settings_notification_bell"
+        drawable="@drawable/user"
         text="@string/profile" />
 </Tabs>

@@ -17,11 +17,13 @@ import com.example.foodlok.MainActivity;
 import com.example.foodlok.R;
 import com.example.foodlok.model.ModelToastDisplay;
 import com.example.foodlok.model.ModelUsers;
+import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 public class ActivitySignupScreen extends AppCompatActivity {
     private ProfileFragment fragment;
     ModelUsers users;
     Context context;
+    ReadableBottomBar rb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ActivitySignupScreen extends AppCompatActivity {
         setContentView(R.layout.activity_signup_screen);
         users = new ModelUsers();
         context = ActivitySignupScreen.this;
+        rb = findViewById(R.id.readableBottomBar);
     }
 
     // When user clicks "FoodSeller" button
@@ -54,7 +57,7 @@ public class ActivitySignupScreen extends AppCompatActivity {
     public void btn_Guest(View view) {
         String dispToast = "Logged in as Guest";
         ModelToastDisplay.displayToast200ms(dispToast, context);
-        ModelUsers.category = "Creator";
+        ModelUsers.category = "Guest";
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

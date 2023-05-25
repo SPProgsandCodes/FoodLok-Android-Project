@@ -7,15 +7,7 @@ public class ModelPost {
     private String postDescription;
     private String postedAt;
     private int postLike;
-    private String postLikedBy;
 
-    public String getPostLikedBy() {
-        return postLikedBy;
-    }
-
-    public void setPostLikedBy(String postLikedBy) {
-        this.postLikedBy = postLikedBy;
-    }
 
     public ModelPost(String postID, String postImage, String postedBy, String postDescription, String postedAt) {
         this.postID = postID;
@@ -76,4 +68,5 @@ public class ModelPost {
     public void setPostedAt(String postedAt) {
         this.postedAt = postedAt;
     }
+
 }

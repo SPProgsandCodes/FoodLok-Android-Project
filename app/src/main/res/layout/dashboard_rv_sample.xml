@@ -94,7 +94,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/ic_like"
-        android:text=" 356"
+        android:text="  356"
         android:textSize="@dimen/_14font_mdp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
