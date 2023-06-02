@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
     Context context;
     ArrayList<ModelUsers> list;
 
@@ -54,17 +54,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
 
 
         FirebaseDatabase.getInstance().getReference().child("Users")
-                        .child(users.getUserId())
-                                .child("Followers")
-                                        .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                .child(users.getUserId())
+                .child("Followers")
+                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()){
+                        if (snapshot.exists()) {
                             holder.binding.btnFollow.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.follow_active_btn));
                             holder.binding.btnFollow.setText("Following");
                             holder.binding.btnFollow.setTextColor(context.getResources().getColor(R.color.gray));
                             holder.binding.btnFollow.setEnabled(false);
-                        } else {
+                        }
+                        else {
                             holder.binding.btnFollow.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -92,7 +93,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
                                                                     holder.binding.btnFollow.setText("Following");
                                                                     holder.binding.btnFollow.setTextColor(context.getResources().getColor(R.color.gray));
                                                                     holder.binding.btnFollow.setEnabled(false);
-                                                                    Toast.makeText(view.getContext(), "You Followed "+users.getProfileName(), Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(view.getContext(), "You Followed " + users.getProfileName(), Toast.LENGTH_SHORT).show();
 
                                                                 }
                                                             });
@@ -119,8 +120,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder>{
         return list.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder{
+    public class viewholder extends RecyclerView.ViewHolder {
         UserSampleBinding binding;
+
         public viewholder(@NonNull View itemView) {
             super(itemView);
 

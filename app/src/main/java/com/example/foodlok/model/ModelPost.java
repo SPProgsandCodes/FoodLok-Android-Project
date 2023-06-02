@@ -7,7 +7,15 @@ public class ModelPost {
     private String postDescription;
     private String postedAt;
     private int postLike;
+    private int commentCount;
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public ModelPost(String postID, String postImage, String postedBy, String postDescription, String postedAt) {
         this.postID = postID;

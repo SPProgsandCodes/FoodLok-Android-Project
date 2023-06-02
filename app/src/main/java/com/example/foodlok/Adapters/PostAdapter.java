@@ -2,8 +2,8 @@
 package com.example.foodlok.Adapters;
 
 
-
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodlok.Activity.ActivityComment;
 import com.example.foodlok.R;
 import com.example.foodlok.model.ModelPost;
 import com.example.foodlok.model.ModelUsers;
@@ -65,6 +66,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
         }
         //Loads post Like count
         holder.likes.setText(model.getPostLike() + "");
+        holder.comments.setText(model.getCommentCount()+"");
 
 
         /*
@@ -105,11 +107,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                             DataSnapshot finalChildSnapShot = childSnapShot;
 
                             /*
-                            * Here we've possibility that user can able to click the button again to unlike tha post.
-                            * So that we've implemented the "setOnClickListener".
-                            * --> If user again clicks on like button that already "liked" then "postUnlike" function will be called.
-                            * --> "postUnlike" function unlikes the post that has been already liked by the user.
-                            */
+                             * Here we've possibility that user can able to click the button again to unlike tha post.
+                             * So that we've implemented the "setOnClickListener".
+                             * --> If user again clicks on like button that already "liked" then "postUnlike" function will be called.
+                             * --> "postUnlike" function unlikes the post that has been already liked by the user.
+                             */
                             holder.likes.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -120,9 +122,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                         }
 
                         /*
-                        * If we doesn't find the current user id from while loop it means that current user has not liked the post.
-                        * then the else block will execute.
-                        */
+                         * If we doesn't find the current user id from while loop it means that current user has not liked the post.
+                         * then the else block will execute.
+                         */
                         else {
                             // If current user has not liked the post, then user can like the post if user click on like button.
                             holder.likes.setOnClickListener(new View.OnClickListener() {
@@ -147,28 +149,35 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                 .child("Users")
                 .child(model.getPostedBy())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // Users that data that stored in then form of snapshot it will be stored in "ModelUsers" class.
+                        ModelUsers user = snapshot.getValue(ModelUsers.class);
+                        //Loads the current user profile image
+                        Picasso.get()
+                                .load(user.getProfilePhoto())
+                                .placeholder(R.drawable.placeholder)
+                                .into(holder.profile);
+                        // Loads the current user's username
+                        holder.userName.setText(user.getProfileName());
+                        // Loads the current user's Profession
+                        holder.profession.setText(user.getProfession());
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+        holder.comments.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Users that data that stored in then form of snapshot it will be stored in "ModelUsers" class.
-                ModelUsers user = snapshot.getValue(ModelUsers.class);
-                //Loads the current user profile image
-                Picasso.get()
-                        .load(user.getProfilePhoto())
-                        .placeholder(R.drawable.placeholder)
-                        .into(holder.profile);
-                // Loads the current user's username
-                holder.userName.setText(user.getProfileName());
-                // Loads the current user's Profession
-                holder.profession.setText(user.getProfession());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View view) {
+                postComment(model);
             }
         });
-
 
         //For Manual Entry of Posts in Home Fragment(Only for Testing Purposes)
 //        holder.profile.setImageResource(model.getProfile());
@@ -255,6 +264,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                         holder.likes.setText(model.getPostLike() + "");
                     }
                 });
+    }
+
+    public void postComment(ModelPost model){
+        Context context1 = context.getApplicationContext();
+        Intent intent = new Intent(context1, ActivityComment.class);
+        intent.putExtra("postID", model.getPostID());
+        intent.putExtra("postedBy", model.getPostedBy());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context1.startActivity(intent);
     }
 
     // Class that binds the GUI components to "PostAdapter" class to use it further

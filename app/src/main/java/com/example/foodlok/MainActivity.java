@@ -4,26 +4,19 @@ package com.example.foodlok;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.foodlok.Activity.ActivityCreatorRegistration;
 import com.example.foodlok.Activity.ActivityLoginScreen;
 import com.example.foodlok.Activity.ActivitySettingsPage;
-import com.example.foodlok.Activity.ActivitySignupScreen;
-import com.example.foodlok.Fragments.AddFragment;
 import com.example.foodlok.Fragments.AddPostFragment;
-import com.example.foodlok.Fragments.CreatorProfileFragment;
 import com.example.foodlok.Fragments.HomeFragment;
 import com.example.foodlok.Fragments.NotificationFragment;
 import com.example.foodlok.Fragments.ProfileFragment;
 import com.example.foodlok.Fragments.SearchFragment;
-import com.example.foodlok.databinding.ActivityMainBinding;
 import com.example.foodlok.model.ModelToastDisplay;
 import com.example.foodlok.model.ModelUsers;
 import com.google.firebase.auth.FirebaseAuth;
